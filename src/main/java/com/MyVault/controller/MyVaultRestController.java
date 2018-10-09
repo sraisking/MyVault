@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.MyVault.pojo.Password;
 import com.MyVault.service.MyVaultService;
@@ -34,5 +38,27 @@ public class MyVaultRestController {
         }
         return new ResponseEntity<List<Password>>(users, HttpStatus.OK);
     }
+    @RequestMapping(value = "/pass/{site}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Password> getPassword(@PathVariable("site") int site) {
+        System.out.println("Fetching Password with site " + site);
+        Password pass = myVaultService.getPassword(site);
+        if (pass == null) {
+            System.out.println("PAssword for Site " + site + " not found");
+            return new ResponseEntity<Password>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Password>(pass, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/pass/newSite", method = RequestMethod.POST)
+    public ResponseEntity<Void> addPass(@RequestBody Password pass,    UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating site " + pass.getSite());
+ 
+        
+        myVaultService.addPass(pass);
+ 
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+ 
+ 
 
 }

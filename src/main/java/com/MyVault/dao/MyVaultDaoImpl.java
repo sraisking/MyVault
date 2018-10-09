@@ -14,8 +14,9 @@ public class MyVaultDaoImpl implements MyVaultDao{
 	private SessionFactory sessionFactory;
 	
 
-	public void addPass(Password employee) {
+	public void addPass(Password pass) {
 		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(pass);
 		
 	}
 
@@ -35,9 +36,9 @@ public class MyVaultDaoImpl implements MyVaultDao{
 		return null;
 	}
 
-	public Password getPassword(String site) {
+	public Password getPassword(int site) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Password) sessionFactory.getCurrentSession().get(Password.class, site);
 	}
 	
 	

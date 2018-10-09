@@ -14,9 +14,10 @@ public class MyVaultServiceImpl implements MyVaultService {
 	@Autowired
 	private MyVaultDao myVaultDao;
 
-	public void addPass(Password employee) {
+	@Transactional
+	public void addPass(Password pass) {
 		// TODO Auto-generated method stub
-		
+		myVaultDao.addPass(pass);
 	}
 
 
@@ -31,9 +32,10 @@ public class MyVaultServiceImpl implements MyVaultService {
 		return null;
 	}
 
-	public Password getPassword(String site) {
+	@Transactional
+	public Password getPassword(int site) {
 		// TODO Auto-generated method stub
-		return null;
+		return myVaultDao.getPassword(site);
 	}
 
 

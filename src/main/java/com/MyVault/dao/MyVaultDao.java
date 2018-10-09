@@ -5,7 +5,7 @@ import java.util.List;
 import com.MyVault.pojo.Password;
 
 public interface MyVaultDao {
-	public void addPass(Password employee);
+	public void addPass(Password pass);
 	 
     public List<Password> getAllPasswords();
  
@@ -13,6 +13,6 @@ public interface MyVaultDao {
  
     public Password updatePassword(Password password);
  
-    public Password getPassword(String site);
+    public Password getPassword(int site);
 
 }

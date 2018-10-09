@@ -13,7 +13,7 @@ public interface MyVaultService {
  
     public Password updatePassword(Password password);
  
-    public Password getPassword(String site);
+    public Password getPassword(int site);
 
 
 }
