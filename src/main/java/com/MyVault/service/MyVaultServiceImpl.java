@@ -9,10 +9,22 @@ import org.springframework.transaction.annotation.Transactional;
 import com.MyVault.dao.MyVaultDao;
 import com.MyVault.pojo.Password;
 
-@Service
+@Service("myVaultService")
 public class MyVaultServiceImpl implements MyVaultService {
 	@Autowired
 	private MyVaultDao myVaultDao;
+
+	public MyVaultDao getMyVaultDao() {
+		return myVaultDao;
+	}
+
+
+
+	public void setMyVaultDao(MyVaultDao myVaultDao) {
+		this.myVaultDao = myVaultDao;
+	}
+
+
 
 	@Transactional
 	public void addPass(Password pass) {
@@ -21,15 +33,14 @@ public class MyVaultServiceImpl implements MyVaultService {
 	}
 
 
-
-	public void deletePassword(String employeeId) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public void deletePassword(int site) {
+		myVaultDao.deletePassword(site);
 	}
 
 	public Password updatePassword(Password password) {
 		// TODO Auto-generated method stub
-		return null;
+		return myVaultDao.updatePassword(password);
 	}
 
 	@Transactional

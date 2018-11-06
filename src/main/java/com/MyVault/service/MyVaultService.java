@@ -9,7 +9,7 @@ public interface MyVaultService {
 	 
     public List<Password> getAllPasswords();
  
-    public void deletePassword(String employeeId);
+    public void deletePassword(int site);
  
     public Password updatePassword(Password password);
  

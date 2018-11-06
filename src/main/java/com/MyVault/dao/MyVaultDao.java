@@ -9,7 +9,7 @@ public interface MyVaultDao {
 	 
     public List<Password> getAllPasswords();
  
-    public void deletePassword(String site);
+    public void deletePassword(int site);
  
     public Password updatePassword(Password password);
  

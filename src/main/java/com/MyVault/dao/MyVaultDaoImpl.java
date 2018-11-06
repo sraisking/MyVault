@@ -14,6 +14,14 @@ public class MyVaultDaoImpl implements MyVaultDao{
 	private SessionFactory sessionFactory;
 	
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
 	public void addPass(Password pass) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(pass);
@@ -26,14 +34,17 @@ public class MyVaultDaoImpl implements MyVaultDao{
 	                .list();
 	}
 
-	public void deletePassword(String site) {
-		// TODO Auto-generated method stub
-		
+	public void deletePassword(int site) {
+		Password password = (Password) sessionFactory.getCurrentSession().load(
+				Password.class, site);
+        if (null != password) {
+            this.sessionFactory.getCurrentSession().delete(password);
+        }		
 	}
 
 	public Password updatePassword(Password password) {
-		// TODO Auto-generated method stub
-		return null;
+		 sessionFactory.getCurrentSession().update(password);	
+		 return password;
 	}
 
 	public Password getPassword(int site) {

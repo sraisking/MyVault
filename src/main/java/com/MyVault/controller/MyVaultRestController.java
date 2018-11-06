@@ -29,6 +29,16 @@ public class MyVaultRestController {
     
     @Autowired
     private MyVaultService myVaultService;
+    @RequestMapping(value = "/pass/delete/{site}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deletePassword(@PathVariable("site") int site) {
+System.out.println("Deleting site ");
+ 
+        
+        myVaultService.deletePassword(site);
+ 
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
     
     @RequestMapping(value = "/pass/", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Password>> getAllPasswords() {
@@ -57,6 +67,16 @@ public class MyVaultRestController {
  
         HttpHeaders headers = new HttpHeaders();
         return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+    @RequestMapping(value = "/pass/update", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Password> updatePassword(@RequestBody Password pass) {
+    	 System.out.println("Updating site " + pass.getSite());
+        Password password = myVaultService.updatePassword(pass);
+        if (pass == null) {
+            System.out.println("PAssword for Site " + pass.getSite() + " not found");
+            return new ResponseEntity<Password>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Password>(pass, HttpStatus.OK);
     }
  
  
