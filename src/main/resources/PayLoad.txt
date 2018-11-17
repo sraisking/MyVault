@@ -1,0 +1,25 @@
+1.payload for http://localhost:8080/MyVault/pass/newSite
+{
+	"id":"1",
+"site":"orkut",
+"password":"5"
+}
+2.payload for http://localhost:8080/MyVault/pass/newSite
+{
+	"id":"2",
+"site":"facebook",
+"password":"52"
+}
+3.payload for http://localhost:8080/MyVault/pass/newSite
+{
+	"id":"3",
+"site":"elavon",
+"password":"53"
+}
+4.http://localhost:8080/MyVault/pass/ ----> for getting all passwords..
+5.http://localhost:8080/MyVault/pass/delete/{site} -->for deleting selected site and password by passing id as path variable.
+(Attention-for now pass to get details by id..end point for deleting detail by site name will be added shortly).
+6.http://localhost:8080/MyVault/pass/{site}-->for getting selected site and password by passing id as path variable.
+(Attention-for now pass to get details by id..end point for getting detail by site name will be added shortly).
+7.http://localhost:8080/MyVault/pass/update-->pass the same payload as the endpoint in http://localhost:8080/MyVault/pass/newSite
+by updating the values.
