@@ -58,6 +58,16 @@ System.out.println("Deleting site ");
         }
         return new ResponseEntity<Password>(pass, HttpStatus.OK);
     }
+    @RequestMapping(value = "/passByName/{siteName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Password>> getPasswordBySiteName(@PathVariable("siteName") String siteName) {
+        System.out.println("Fetching Password with site " + siteName);
+        List<Password> pass = myVaultService.getPasswordBySiteName(siteName);
+        if (pass == null) {
+            System.out.println("PAssword for Site " + siteName + " not found");
+            return new ResponseEntity<List<Password>>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Password>>(pass, HttpStatus.OK);
+    }
     @RequestMapping(value = "/pass/newSite", method = RequestMethod.POST)
     public ResponseEntity<Void> addPass(@RequestBody Password pass,    UriComponentsBuilder ucBuilder) {
         System.out.println("Creating site " + pass.getSite());

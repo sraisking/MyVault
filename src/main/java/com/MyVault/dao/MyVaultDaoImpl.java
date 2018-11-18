@@ -1,10 +1,14 @@
 package com.MyVault.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.SharedSessionContract;
 
 import com.MyVault.pojo.Password;
 
@@ -24,7 +28,7 @@ public class MyVaultDaoImpl implements MyVaultDao{
 
 	public void addPass(Password pass) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(pass);
+		sessionFactory.getCurrentSession().save(pass);
 		
 	}
 
@@ -50,6 +54,18 @@ public class MyVaultDaoImpl implements MyVaultDao{
 	public Password getPassword(int site) {
 		// TODO Auto-generated method stub
 		return (Password) sessionFactory.getCurrentSession().get(Password.class, site);
+	}
+	public List<Password> getPasswordBySiteName(String siteName) {
+		// TODO Auto-generated method stub
+		List<Password> list=new ArrayList<Password>();
+		String hql = "FROM Password P WHERE P.site = :siteName";
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery(hql);
+		query.setParameter("siteName", siteName);
+		list=query.list();
+		return list;
+		
+				
 	}
 	
 	

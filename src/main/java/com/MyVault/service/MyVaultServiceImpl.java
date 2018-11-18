@@ -48,8 +48,11 @@ public class MyVaultServiceImpl implements MyVaultService {
 		// TODO Auto-generated method stub
 		return myVaultDao.getPassword(site);
 	}
-
-
+	@Transactional
+	public List<Password> getPasswordBySiteName(String siteName)
+	{
+		return myVaultDao.getPasswordBySiteName(siteName);
+	}
 
 	@Transactional
 	public List<Password> getAllPasswords() {

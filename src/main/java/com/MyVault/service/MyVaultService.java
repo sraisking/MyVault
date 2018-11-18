@@ -14,6 +14,7 @@ public interface MyVaultService {
     public Password updatePassword(Password password);
  
     public Password getPassword(int site);
+    public List<Password> getPasswordBySiteName(String siteName);
 
 
 }

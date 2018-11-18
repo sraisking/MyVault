@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name="password")
 public class Password implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column
 	private String site;
