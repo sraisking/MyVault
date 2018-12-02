@@ -1,4 +1,4 @@
-package com.MyVault.pojo;
+package com.MyVault.model;
 
 import java.io.Serializable;
 
@@ -9,34 +9,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name="password")
+@Table(name = "password")
 public class Password implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column
 	private String site;
 	@Column
 	private String password;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getSite() {
 		return site;
 	}
+
 	public void setSite(String site) {
 		this.site = site;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 }

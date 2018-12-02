@@ -2,7 +2,7 @@ package com.MyVault.dao;
 
 import java.util.List;
 
-import com.MyVault.pojo.Password;
+import com.MyVault.model.Password;
 
 public interface MyVaultDao {
 	public void addPass(Password pass);

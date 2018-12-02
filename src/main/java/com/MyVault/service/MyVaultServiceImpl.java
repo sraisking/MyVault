@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.MyVault.dao.MyVaultDao;
-import com.MyVault.pojo.Password;
+import com.MyVault.model.Password;
 
 @Service("myVaultService")
 public class MyVaultServiceImpl implements MyVaultService {

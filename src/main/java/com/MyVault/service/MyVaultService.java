@@ -2,7 +2,7 @@ package com.MyVault.service;
 
 import java.util.List;
 
-import com.MyVault.pojo.Password;
+import com.MyVault.model.Password;
 
 public interface MyVaultService {
 	public void addPass(Password employee);

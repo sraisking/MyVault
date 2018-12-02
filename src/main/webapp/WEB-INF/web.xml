@@ -12,6 +12,17 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    
+	<filter>
+		<filter-name>corsResponseFilter</filter-name>
+		<filter-class>com.MyVault.controller.filter.CORSResponseFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>corsResponseFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
     <servlet>
         <servlet-name>spring</servlet-name>
         <servlet-class>
